@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MassageTimerView: View {
+    @EnvironmentObject var localization: LocalizationManager
     @Environment(\.scenePhase) var scenePhase
     @State private var selectedPreset: MassagePreset? = nil
     @State private var timeRemaining: Int = 0
@@ -24,7 +25,7 @@ struct MassageTimerView: View {
                 .padding(.bottom, 30)
             }
         }
-        .navigationTitle("Timer Masaj")
+        .navigationTitle(localization.L("Timer Masaj", "Massage Timer"))
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear { stopTimer() }
         .onChange(of: scenePhase) { newPhase in
@@ -39,7 +40,7 @@ struct MassageTimerView: View {
         VStack(spacing: 16) {
             Text("\u{1F932}")
                 .font(.system(size: 50))
-            Text("Alege Tipul de Masaj")
+            Text(localization.L("Alege Tipul de Masaj", "Choose Massage Type"))
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
             
@@ -53,10 +54,10 @@ struct MassageTimerView: View {
                             .font(.system(size: 30))
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(preset.name)
+                            Text(preset.localizedName(localization))
                                 .font(.system(size: 15, weight: .bold))
                                 .foregroundColor(.white)
-                            Text(preset.description)
+                            Text(preset.localizedDescription(localization))
                                 .font(.system(size: 11))
                                 .foregroundColor(.white.opacity(0.5))
                                 .lineLimit(2)
@@ -82,7 +83,7 @@ struct MassageTimerView: View {
             Text(preset.icon)
                 .font(.system(size: 50))
             
-            Text(preset.name)
+            Text(preset.localizedName(localization))
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(.white)
             
@@ -102,7 +103,7 @@ struct MassageTimerView: View {
                     Text(timeString)
                         .font(.system(size: 40, weight: .bold, design: .monospaced))
                         .foregroundColor(.white)
-                    Text("ramase")
+                    Text(localization.L("ramase", "remaining"))
                         .font(.system(size: 12))
                         .foregroundColor(.white.opacity(0.5))
                 }
@@ -112,7 +113,7 @@ struct MassageTimerView: View {
                 Button(action: toggleTimer) {
                     HStack {
                         Image(systemName: isRunning ? "pause.fill" : "play.fill")
-                        Text(isRunning ? "Pauza" : "Start")
+                        Text(isRunning ? localization.L("Pauza", "Pause") : "Start")
                     }
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
@@ -138,7 +139,7 @@ struct MassageTimerView: View {
             .padding(.horizontal)
             
             Button(action: { selectedPreset = nil; stopTimer() }) {
-                Text("Inapoi la Preseturi")
+                Text(localization.L("Inapoi la Preseturi", "Back to Presets"))
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white.opacity(0.5))
             }

@@ -6,6 +6,7 @@ struct PositionCard: View {
     let position: Position
     let isFavorite: Bool
     let onFavoriteToggle: () -> Void
+    @EnvironmentObject var localization: LocalizationManager
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -32,7 +33,7 @@ struct PositionCard: View {
             
             // Info
             VStack(alignment: .leading, spacing: 6) {
-                Text(position.name)
+                Text(position.localizedName(localization))
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(Theme.textPrimary)
                     .lineLimit(1)
@@ -40,13 +41,13 @@ struct PositionCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: position.category.icon)
                         .font(.system(size: 10))
-                    Text(position.category.displayName)
+                    Text(position.category.localizedName(localization))
                         .font(.system(size: 11))
                 }
                 .foregroundColor(Theme.categoryColor(position.category))
                 
                 HStack(spacing: 4) {
-                    Text(position.difficulty.displayName)
+                    Text(position.difficulty.localizedName(localization))
                         .font(.system(size: 10, weight: .medium))
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
@@ -79,13 +80,14 @@ struct CategoryChip: View {
     let category: PositionCategory
     let isSelected: Bool
     let action: () -> Void
+    @EnvironmentObject var localization: LocalizationManager
     
     var body: some View {
         Button(action: action) {
             HStack(spacing: 4) {
                 Image(systemName: category.icon)
                     .font(.system(size: 12))
-                Text(category.displayName)
+                Text(category.localizedName(localization))
                     .font(.system(size: 13, weight: .medium))
             }
             .padding(.horizontal, 12)
@@ -106,10 +108,11 @@ struct DifficultyChip: View {
     let difficulty: Difficulty
     let isSelected: Bool
     let action: () -> Void
+    @EnvironmentObject var localization: LocalizationManager
     
     var body: some View {
         Button(action: action) {
-            Text(difficulty.displayName)
+            Text(difficulty.localizedName(localization))
                 .font(.system(size: 12, weight: .medium))
                 .padding(.horizontal, 10)
                 .padding(.vertical, 6)
@@ -127,13 +130,14 @@ struct DifficultyChip: View {
 // MARK: - Search Bar
 struct SearchBar: View {
     @Binding var text: String
+    @EnvironmentObject var localization: LocalizationManager
     
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Theme.textMuted)
             
-            TextField("Cauta pozitii...", text: $text)
+            TextField(localization.L("Cauta pozitii...", "Search positions..."), text: $text)
                 .foregroundColor(Theme.textPrimary)
                 .autocorrectionDisabled()
             

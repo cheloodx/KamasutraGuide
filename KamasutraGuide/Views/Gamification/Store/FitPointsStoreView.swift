@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LoveLanguageTestView: View {
+    @EnvironmentObject var localization: LocalizationManager
     @State private var currentQuestion = 0
     @State private var scores: [LoveLanguage: Int] = [:]
     @State private var showResult = false
@@ -24,7 +25,7 @@ struct LoveLanguageTestView: View {
                 startView
             }
         }
-        .navigationTitle("Limbajul Iubirii")
+        .navigationTitle(localization.L("Limbajul Iubirii", "Love Language"))
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -32,18 +33,18 @@ struct LoveLanguageTestView: View {
         VStack(spacing: 20) {
             Text("\u{1F49D}")
                 .font(.system(size: 60))
-            Text("Descopera Limbajul\nTau al Iubirii")
+            Text(localization.L("Descopera Limbajul\nTau al Iubirii", "Discover Your\nLove Language"))
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
-            Text("Raspunde la 15 intrebari pentru a descoperi cum preferi sa primesti si sa oferi iubire.")
+            Text(localization.L("Raspunde la 15 intrebari pentru a descoperi cum preferi sa primesti si sa oferi iubire.", "Answer 15 questions to discover how you prefer to receive and give love."))
                 .font(.system(size: 14))
                 .foregroundColor(.white.opacity(0.6))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
             
             Button(action: { started = true; currentQuestion = 0; scores = [:] }) {
-                Text("Incepe Testul")
+                Text(localization.L("Incepe Testul", "Start Test"))
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -58,7 +59,7 @@ struct LoveLanguageTestView: View {
     var questionView: some View {
         VStack(spacing: 20) {
             HStack {
-                Text("Intrebarea \(currentQuestion + 1)/\(questions.count)")
+                Text(localization.L("Intrebarea \(currentQuestion + 1)/\(questions.count)", "Question \(currentQuestion + 1)/\(questions.count)"))
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white.opacity(0.6))
                 Spacer()
@@ -78,7 +79,7 @@ struct LoveLanguageTestView: View {
             .frame(height: 6)
             .padding(.horizontal)
             
-            Text("Ce preferi?")
+            Text(localization.L("Ce preferi?", "What do you prefer?"))
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
             
@@ -87,7 +88,7 @@ struct LoveLanguageTestView: View {
             let q = questions[currentQuestion]
             
             Button(action: { answer(q.languageA) }) {
-                Text(q.optionA)
+                Text(q.localizedOptionA(localization))
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -97,12 +98,12 @@ struct LoveLanguageTestView: View {
             }
             .padding(.horizontal)
             
-            Text("sau")
+            Text(localization.L("sau", "or"))
                 .font(.system(size: 13, weight: .bold))
                 .foregroundColor(.white.opacity(0.3))
             
             Button(action: { answer(q.languageB) }) {
-                Text(q.optionB)
+                Text(q.localizedOptionB(localization))
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -122,7 +123,7 @@ struct LoveLanguageTestView: View {
             VStack(spacing: 20) {
                 Text("\u{1F49D}")
                     .font(.system(size: 50))
-                Text("Limbajul Tau al Iubirii")
+                Text(localization.L("Limbajul Tau al Iubirii", "Your Love Language"))
                     .font(.system(size: 14))
                     .foregroundColor(.white.opacity(0.5))
                 
@@ -162,7 +163,7 @@ struct LoveLanguageTestView: View {
                 .padding(.horizontal)
                 
                 Button(action: { showResult = false; started = false }) {
-                    Text("Refa Testul")
+                    Text(localization.L("Refa Testul", "Retake Test"))
                         .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)

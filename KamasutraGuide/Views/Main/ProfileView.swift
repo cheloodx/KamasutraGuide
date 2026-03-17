@@ -3,10 +3,12 @@ import SwiftUI
 struct PositionDetailView: View {
     let position: Position
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var localization: LocalizationManager
+    @EnvironmentObject var audioManager: AudioManager
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Theme.background.ignoresSafeArea()
             
             ScrollView {
@@ -34,11 +36,16 @@ struct PositionDetailView: View {
                         // Variations
                         variationsSection
                         
-                        Spacer(minLength: 40)
+                        Spacer(minLength: 80)
                     }
                     .padding(20)
                 }
             }
+            
+            // Mini Music Player
+            MiniMusicPlayerView()
+                .padding(.horizontal)
+                .padding(.bottom, 8)
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -72,14 +79,14 @@ struct PositionDetailView: View {
     // MARK: - Title Section
     private var titleSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(position.name)
+            Text(position.localizedName(localization))
                 .font(.system(size: 28, weight: .bold))
                 .foregroundColor(Theme.textPrimary)
             
             HStack(spacing: 8) {
                 HStack(spacing: 4) {
                     Image(systemName: position.category.icon)
-                    Text(position.category.displayName)
+                    Text(position.category.localizedName(localization))
                 }
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(Theme.categoryColor(position.category))
@@ -88,7 +95,7 @@ struct PositionDetailView: View {
                 .background(Theme.categoryColor(position.category).opacity(0.15))
                 .cornerRadius(8)
                 
-                Text(position.difficulty.displayName)
+                Text(position.difficulty.localizedName(localization))
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Theme.difficultyColor(position.difficulty))
                     .padding(.horizontal, 10)
@@ -111,7 +118,7 @@ struct PositionDetailView: View {
                             .foregroundColor(level <= position.intimacy ? Theme.primary : Theme.textMuted)
                     }
                 }
-                Text("Intimitate")
+                Text(localization.L("Intimitate", "Intimacy"))
                     .font(.system(size: 11))
                     .foregroundColor(Theme.textSecondary)
             }
@@ -122,10 +129,10 @@ struct PositionDetailView: View {
             
             // Difficulty
             VStack(spacing: 4) {
-                Text(position.difficulty.displayName)
+                Text(position.difficulty.localizedName(localization))
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(Theme.difficultyColor(position.difficulty))
-                Text("Dificultate")
+                Text(localization.L("Dificultate", "Difficulty"))
                     .font(.system(size: 11))
                     .foregroundColor(Theme.textSecondary)
             }
@@ -139,7 +146,7 @@ struct PositionDetailView: View {
                 Image(systemName: position.category.icon)
                     .font(.system(size: 18))
                     .foregroundColor(Theme.categoryColor(position.category))
-                Text(position.category.displayName)
+                Text(position.category.localizedName(localization))
                     .font(.system(size: 11))
                     .foregroundColor(Theme.textSecondary)
             }
@@ -153,8 +160,8 @@ struct PositionDetailView: View {
     // MARK: - Description
     private var descriptionSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            SectionHeader(title: "Descriere", icon: "text.alignleft")
-            Text(position.description)
+            SectionHeader(title: localization.L("Descriere", "Description"), icon: "text.alignleft")
+            Text(position.localizedDescription(localization))
                 .font(.system(size: 15))
                 .foregroundColor(Theme.textSecondary)
                 .lineSpacing(4)
@@ -164,9 +171,9 @@ struct PositionDetailView: View {
     // MARK: - Benefits
     private var benefitsSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            SectionHeader(title: "Beneficii", icon: "star.fill")
+            SectionHeader(title: localization.L("Beneficii", "Benefits"), icon: "star.fill")
             
-            ForEach(position.benefits, id: \.self) { benefit in
+            ForEach(position.localizedBenefits(localization), id: \.self) { benefit in
                 HStack(alignment: .top, spacing: 10) {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 14))
@@ -186,9 +193,9 @@ struct PositionDetailView: View {
     // MARK: - Tips
     private var tipsSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            SectionHeader(title: "Sfaturi", icon: "lightbulb.fill")
+            SectionHeader(title: localization.L("Sfaturi", "Tips"), icon: "lightbulb.fill")
             
-            ForEach(Array(position.tips.enumerated()), id: \.offset) { index, tip in
+            ForEach(Array(position.localizedTips(localization).enumerated()), id: \.offset) { index, tip in
                 HStack(alignment: .top, spacing: 10) {
                     Text("\(index + 1)")
                         .font(.system(size: 12, weight: .bold))
@@ -211,9 +218,9 @@ struct PositionDetailView: View {
     // MARK: - Variations
     private var variationsSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            SectionHeader(title: "Variatii", icon: "arrow.triangle.branch")
+            SectionHeader(title: localization.L("Variatii", "Variations"), icon: "arrow.triangle.branch")
             
-            ForEach(position.variations, id: \.self) { variation in
+            ForEach(position.localizedVariations(localization), id: \.self) { variation in
                 HStack(alignment: .top, spacing: 10) {
                     Image(systemName: "arrow.right.circle")
                         .font(.system(size: 14))
