@@ -42,49 +42,51 @@ struct ToyShopView: View {
                     // Shop List
                     VStack(spacing: 12) {
                         ForEach(FeatureData.toyShopItems) { shop in
-                            Link(destination: URL(string: shop.url)!) {
-                                HStack(spacing: 14) {
-                                    // Icon
-                                    ZStack {
-                                        Circle()
-                                            .fill(shop.gradient.opacity(0.3))
-                                            .frame(width: 50, height: 50)
-                                        Text(shop.icon)
-                                            .font(.system(size: 24))
+                            if let url = URL(string: shop.url) {
+                                Link(destination: url) {
+                                    HStack(spacing: 14) {
+                                        // Icon
+                                        ZStack {
+                                            Circle()
+                                                .fill(shop.gradient.opacity(0.3))
+                                                .frame(width: 50, height: 50)
+                                            Text(shop.icon)
+                                                .font(.system(size: 24))
+                                        }
+                                        
+                                        // Info
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(shop.localizedName(localization))
+                                                .font(.system(size: 16, weight: .bold))
+                                                .foregroundColor(.white)
+                                            Text(shop.localizedDescription(localization))
+                                                .font(.system(size: 12))
+                                                .foregroundColor(.white.opacity(0.6))
+                                                .lineLimit(2)
+                                                .multilineTextAlignment(.leading)
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        // Arrow
+                                        Image(systemName: "arrow.up.right.square.fill")
+                                            .font(.system(size: 20))
+                                            .foregroundStyle(shop.gradient)
                                     }
-                                    
-                                    // Info
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text(shop.localizedName(localization))
-                                            .font(.system(size: 16, weight: .bold))
-                                            .foregroundColor(.white)
-                                        Text(shop.localizedDescription(localization))
-                                            .font(.system(size: 12))
-                                            .foregroundColor(.white.opacity(0.6))
-                                            .lineLimit(2)
-                                            .multilineTextAlignment(.leading)
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    // Arrow
-                                    Image(systemName: "arrow.up.right.square.fill")
-                                        .font(.system(size: 20))
-                                        .foregroundStyle(shop.gradient)
+                                    .padding(14)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(LinearGradient(
+                                                colors: [Color.white.opacity(0.08), Color.white.opacity(0.03)],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            ))
+                                    )
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .stroke(shop.gradient.opacity(0.3), lineWidth: 1)
+                                    )
                                 }
-                                .padding(14)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .fill(LinearGradient(
-                                            colors: [Color.white.opacity(0.08), Color.white.opacity(0.03)],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        ))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(shop.gradient.opacity(0.3), lineWidth: 1)
-                                )
                             }
                         }
                     }
