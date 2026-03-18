@@ -57,8 +57,8 @@ class AudioManager: ObservableObject {
     
     init() {
         // Load saved preferences
-        let savedVolume = UserDefaults.standard.float(forKey: "kamasutra_music_volume")
-        if savedVolume > 0 {
+        let savedVolume = UserDefaults.standard.object(forKey: "kamasutra_music_volume") as? Float
+        if let savedVolume = savedVolume {
             volume = savedVolume
         }
         isMusicEnabled = UserDefaults.standard.object(forKey: "kamasutra_music_enabled") as? Bool ?? true

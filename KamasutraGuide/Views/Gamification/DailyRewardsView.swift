@@ -36,7 +36,7 @@ struct RomanticQuotesView: View {
                         HStack(spacing: 8) {
                             Image(systemName: currentQuote.category.icon)
                                 .foregroundColor(currentQuote.category.color)
-                            Text(currentQuote.category.rawValue)
+                            Text(currentQuote.category.localizedName(localization))
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(currentQuote.category.color)
                         }
@@ -74,7 +74,7 @@ struct RomanticQuotesView: View {
                                 selectedCategory = nil
                             }
                             ForEach(QuoteCategory.allCases, id: \.self) { cat in
-                                CategoryFilterChip(title: cat.rawValue, isSelected: selectedCategory == cat) {
+                                CategoryFilterChip(title: cat.localizedName(localization), isSelected: selectedCategory == cat) {
                                     selectedCategory = cat
                                 }
                             }

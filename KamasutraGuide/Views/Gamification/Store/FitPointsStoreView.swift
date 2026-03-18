@@ -127,7 +127,7 @@ struct LoveLanguageTestView: View {
                     .font(.system(size: 14))
                     .foregroundColor(.white.opacity(0.5))
                 
-                Text(topLanguage.rawValue)
+                Text(topLanguage.localizedName(localization))
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.white)
                 
@@ -135,7 +135,7 @@ struct LoveLanguageTestView: View {
                     .font(.system(size: 40))
                     .foregroundColor(topLanguage.color)
                 
-                Text(topLanguage.langDescription)
+                Text(topLanguage.localizedDescription(localization))
                     .font(.system(size: 14))
                     .foregroundColor(.white.opacity(0.7))
                     .multilineTextAlignment(.center)
@@ -147,7 +147,7 @@ struct LoveLanguageTestView: View {
                             Image(systemName: lang.icon)
                                 .foregroundColor(lang.color)
                                 .frame(width: 24)
-                            Text(lang.rawValue)
+                            Text(lang.localizedName(localization))
                                 .font(.system(size: 13))
                                 .foregroundColor(.white)
                             Spacer()
