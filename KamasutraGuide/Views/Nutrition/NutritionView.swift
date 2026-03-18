@@ -209,8 +209,8 @@ struct InfoView: View {
             SectionHeader(title: localization.L("Despre aplicatie", "About the app"), icon: "info.circle.fill")
             
             Text(localization.L(
-                "Kamasutra Guide este un ghid educational complet care prezinta 57 de pozitii din arta clasica a iubirii. Aplicatia ofera informatii detaliate despre fiecare pozitie, inclusiv beneficii, sfaturi practice si variatii.",
-                "Kamasutra Guide is a complete educational guide that presents 57 positions from the classic art of love. The app provides detailed information about each position, including benefits, practical tips and variations."
+                                "Kamasutra Guide este un ghid educational complet care prezinta 59 de pozitii din arta clasica a iubirii. Aplicatia ofera informatii detaliate despre fiecare pozitie, inclusiv beneficii, sfaturi practice si variatii.",
+                                "Kamasutra Guide is a complete educational guide that presents 59 positions from the classic art of love. The app provides detailed information about each position, including benefits, practical tips and variations."
             ))
                 .font(.system(size: 14))
                 .foregroundColor(Theme.textSecondary)

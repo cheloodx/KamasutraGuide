@@ -171,8 +171,8 @@ struct Strings {
         static func difficultyLevels(_ l: LocalizationManager) -> String { l.L("Niveluri de dificultate", "Difficulty Levels") }
         static func aboutApp(_ l: LocalizationManager) -> String { l.L("Despre aplicatie", "About the App") }
         static func aboutText(_ l: LocalizationManager) -> String {
-            l.L("Kamasutra Guide este un ghid educational complet care prezinta 57 de pozitii din arta clasica a iubirii. Aplicatia ofera informatii detaliate despre fiecare pozitie, inclusiv beneficii, sfaturi practice si variatii.",
-                "Kamasutra Guide is a complete educational guide featuring 57 positions from the classic art of love. The app provides detailed information about each position, including benefits, practical tips, and variations.")
+                        l.L("Kamasutra Guide este un ghid educational complet care prezinta 59 de pozitii din arta clasica a iubirii. Aplicatia ofera informatii detaliate despre fiecare pozitie, inclusiv beneficii, sfaturi practice si variatii.",
+                            "Kamasutra Guide is a complete educational guide featuring 59 positions from the classic art of love. The app provides detailed information about each position, including benefits, practical tips, and variations.")
         }
         static func aboutText2(_ l: LocalizationManager) -> String {
             l.L("Aceasta aplicatie este destinata exclusiv adultilor si are un scop educational. Toate informatiile sunt prezentate intr-o maniera respectuoasa si informativa.",
