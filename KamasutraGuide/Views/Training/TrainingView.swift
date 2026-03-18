@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var localization: LocalizationManager
     
     private let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -18,10 +19,10 @@ struct FavoritesView: View {
                         // Header
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("Favorite")
+                                Text(localization.L("Favorite", "Favorites"))
                                     .font(.system(size: 28, weight: .bold))
                                     .foregroundColor(Theme.textPrimary)
-                                Text("\(appState.totalFavorites) pozitii salvate")
+                                Text(localization.L("\(appState.totalFavorites) pozitii salvate", "\(appState.totalFavorites) saved positions"))
                                     .font(.system(size: 14))
                                     .foregroundColor(Theme.textSecondary)
                             }
@@ -37,8 +38,8 @@ struct FavoritesView: View {
                         if appState.favoritePositions.isEmpty {
                             EmptyStateView(
                                 icon: "heart.slash",
-                                title: "Nicio pozitie favorita",
-                                message: "Apasati pe inima de pe orice pozitie pentru a o adauga la favorite."
+                                title: localization.L("Nicio pozitie favorita", "No favorite positions"),
+                                message: localization.L("Apasati pe inima de pe orice pozitie pentru a o adauga la favorite.", "Tap the heart on any position to add it to favorites.")
                             )
                             .padding(.top, 60)
                         } else {

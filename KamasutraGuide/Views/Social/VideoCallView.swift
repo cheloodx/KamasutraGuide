@@ -5,6 +5,7 @@ struct GameDetailView: View {
     let game: CoupleGame
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var localization: LocalizationManager
     
     var body: some View {
         NavigationView {
@@ -23,8 +24,32 @@ struct GameDetailView: View {
                 case "position-roulette":
                     PositionRouletteView()
                         .environmentObject(appState)
+                case "spin-the-bottle":
+                    SpinTheBottleView()
+                case "fantasy-cards":
+                    FantasyCardsView()
+                case "love-bingo":
+                    LoveBingoView()
+                case "countdown":
+                    CountdownGameView()
+                case "mystery-box":
+                    MysteryBoxView()
+                case "tempo":
+                    TempoGameView()
+                case "body-painting":
+                    BodyPaintingView()
+                case "blindfold-game":
+                    BlindfoldGameView()
+                case "hot-and-cold":
+                    HotAndColdView()
+                case "massage-roulette":
+                    MassageRouletteView()
+                case "love-story":
+                    LoveStoryView()
+                case "strip-poker":
+                    StripPokerView()
                 default:
-                    Text("Joc in curs de dezvoltare")
+                    Text(localization.L("Joc in curs de dezvoltare", "Game in development"))
                 }
             }
             .background(Theme.backgroundGradient.ignoresSafeArea())
@@ -44,6 +69,7 @@ struct GameDetailView: View {
 
 // MARK: - Truth or Dare Game
 struct TruthOrDareGameView: View {
+    @EnvironmentObject var localization: LocalizationManager
     @State private var currentCard: TruthOrDareCard?
     @State private var showCard = false
     @State private var selectedType: TruthOrDareType?
@@ -51,11 +77,11 @@ struct TruthOrDareGameView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                Text("Adevar sau Provocare")
+                Text(localization.L("Adevar sau Provocare", "Truth or Dare"))
                     .font(.system(size: 24, weight: .bold))
                     .foregroundStyle(Theme.primaryGradient)
                 
-                Text("Alege intre Adevar si Provocare!")
+                Text(localization.L("Alege intre Adevar si Provocare!", "Choose between Truth and Dare!"))
                     .foregroundColor(.white.opacity(0.6))
                 
                 if let card = currentCard, showCard {
@@ -63,13 +89,13 @@ struct TruthOrDareGameView: View {
                         HStack {
                             Image(systemName: card.type.icon)
                                 .foregroundColor(card.type.color)
-                            Text(card.type.rawValue)
+                            Text(card.type.localizedName(localization))
                                 .fontWeight(.bold)
                                 .foregroundColor(card.type.color)
                         }
                         .font(.title3)
                         
-                        Text(card.text)
+                        Text(card.localizedText(localization))
                             .font(.title3)
                             .fontWeight(.medium)
                             .foregroundColor(.white)
@@ -84,7 +110,7 @@ struct TruthOrDareGameView: View {
                         }
                         .font(.caption)
                         
-                        Text("Intensitate: \(card.intensity)/5")
+                        Text(localization.L("Intensitate: \(card.intensity)/5", "Intensity: \(card.intensity)/5"))
                             .font(.caption)
                             .foregroundColor(.white.opacity(0.5))
                     }
@@ -106,7 +132,7 @@ struct TruthOrDareGameView: View {
                     Button(action: { drawCard(.truth) }) {
                         HStack {
                             Image(systemName: "bubble.left.fill")
-                            Text("Adevar")
+                            Text(localization.L("Adevar", "Truth"))
                         }
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -121,7 +147,7 @@ struct TruthOrDareGameView: View {
                     Button(action: { drawCard(.dare) }) {
                         HStack {
                             Image(systemName: "flame.fill")
-                            Text("Provocare")
+                            Text(localization.L("Provocare", "Dare"))
                         }
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -155,13 +181,14 @@ struct TruthOrDareGameView: View {
 
 // MARK: - Would You Rather Game
 struct WouldYouRatherGameView: View {
+    @EnvironmentObject var localization: LocalizationManager
     @State private var currentCard: WouldYouRatherCard?
     @State private var selectedOption: String?
     
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                Text("Ce Ai Prefera?")
+                Text(localization.L("Ce Ai Prefera?", "Would You Rather?"))
                     .font(.system(size: 24, weight: .bold))
                     .foregroundStyle(
                         LinearGradient(colors: [Color(hex: "A55EEA"), Color(hex: "8854D0")], startPoint: .leading, endPoint: .trailing)
@@ -169,7 +196,7 @@ struct WouldYouRatherGameView: View {
                 
                 if let card = currentCard {
                     VStack(spacing: 16) {
-                        Text(card.category)
+                        Text(card.localizedCategory(localization))
                             .font(.caption)
                             .fontWeight(.bold)
                             .padding(.horizontal, 12)
@@ -179,7 +206,7 @@ struct WouldYouRatherGameView: View {
                             .foregroundColor(Color(hex: "A55EEA"))
                         
                         Button(action: { selectedOption = "A" }) {
-                            Text(card.optionA)
+                            Text(card.localizedOptionA(localization))
                                 .font(.headline)
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
@@ -191,13 +218,13 @@ struct WouldYouRatherGameView: View {
                                 )
                         }
                         
-                        Text("SAU")
+                        Text(localization.L("SAU", "OR"))
                             .font(.caption)
                             .fontWeight(.bold)
                             .foregroundColor(.white.opacity(0.4))
                         
                         Button(action: { selectedOption = "B" }) {
-                            Text(card.optionB)
+                            Text(card.localizedOptionB(localization))
                                 .font(.headline)
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
@@ -220,7 +247,7 @@ struct WouldYouRatherGameView: View {
                 Button(action: { nextCard() }) {
                     HStack {
                         Image(systemName: "arrow.right.circle.fill")
-                        Text(currentCard == nil ? "Incepe Jocul" : "Urmatoarea Intrebare")
+                        Text(currentCard == nil ? localization.L("Incepe Jocul", "Start Game") : localization.L("Urmatoarea Intrebare", "Next Question"))
                     }
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -245,19 +272,20 @@ struct WouldYouRatherGameView: View {
 
 // MARK: - Dice Game
 struct DiceGameView: View {
+    @EnvironmentObject var localization: LocalizationManager
     @State private var currentAction: DiceAction?
     @State private var isRolling = false
     
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                Text("Zarurile Pasiunii")
+                Text(localization.L("Zarurile Pasiunii", "Passion Dice"))
                     .font(.system(size: 24, weight: .bold))
                     .foregroundStyle(
                         LinearGradient(colors: [Color(hex: "FF6348"), Color(hex: "EE5A24")], startPoint: .leading, endPoint: .trailing)
                     )
                 
-                Text("Arunca zarurile si urmeaza instructiunile!")
+                Text(localization.L("Arunca zarurile si urmeaza instructiunile!", "Roll the dice and follow the instructions!"))
                     .foregroundColor(.white.opacity(0.6))
                 
                 // Dice display
@@ -278,18 +306,18 @@ struct DiceGameView: View {
                             .font(.system(size: 40))
                             .foregroundColor(Color(hex: "FF6348"))
                         
-                        Text(action.action)
+                        Text(action.localizedAction(localization))
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                         
-                        Text(action.bodyPart)
+                        Text(action.localizedBodyPart(localization))
                             .font(.title3)
                             .foregroundColor(Color(hex: "FF6348"))
                         
                         HStack {
                             Image(systemName: "clock.fill")
-                            Text(action.duration)
+                            Text(action.localizedDuration(localization))
                         }
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.6))
@@ -307,7 +335,7 @@ struct DiceGameView: View {
                 Button(action: { rollDice() }) {
                     HStack {
                         Image(systemName: "dice.fill")
-                        Text("Arunca Zarurile!")
+                        Text(localization.L("Arunca Zarurile!", "Roll the Dice!"))
                     }
                     .fontWeight(.bold)
                     .foregroundColor(.white)

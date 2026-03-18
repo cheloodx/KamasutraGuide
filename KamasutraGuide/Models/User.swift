@@ -4,17 +4,42 @@ import Foundation
 struct Position: Identifiable, Codable, Equatable {
     let id: String
     let name: String
+    let nameEn: String
     let category: PositionCategory
     let difficulty: Difficulty
     let intimacy: Int
     let image: String
     let description: String
+    let descriptionEn: String
     let benefits: [String]
+    let benefitsEn: [String]
     let tips: [String]
+    let tipsEn: [String]
     let variations: [String]
+    let variationsEn: [String]
     
     static func == (lhs: Position, rhs: Position) -> Bool {
         lhs.id == rhs.id
+    }
+    
+    func localizedName(_ l: LocalizationManager) -> String {
+        l.isEnglish ? nameEn : name
+    }
+    
+    func localizedDescription(_ l: LocalizationManager) -> String {
+        l.isEnglish ? descriptionEn : description
+    }
+    
+    func localizedBenefits(_ l: LocalizationManager) -> [String] {
+        l.isEnglish ? benefitsEn : benefits
+    }
+    
+    func localizedTips(_ l: LocalizationManager) -> [String] {
+        l.isEnglish ? tipsEn : tips
+    }
+    
+    func localizedVariations(_ l: LocalizationManager) -> [String] {
+        l.isEnglish ? variationsEn : variations
     }
 }
 
@@ -32,6 +57,10 @@ enum PositionCategory: String, Codable, CaseIterable {
         case .adventurous: return "Aventuros"
         case .intimate: return "Intim"
         }
+    }
+    
+    func localizedName(_ l: LocalizationManager) -> String {
+        Strings.Categories.displayName(self, l)
     }
     
     var icon: String {
@@ -67,6 +96,10 @@ enum Difficulty: String, Codable, CaseIterable {
         case .advanced: return "Advanced"
         case .expert: return "Expert"
         }
+    }
+    
+    func localizedName(_ l: LocalizationManager) -> String {
+        Strings.Difficulties.displayName(self, l)
     }
     
     var colorHex: String {

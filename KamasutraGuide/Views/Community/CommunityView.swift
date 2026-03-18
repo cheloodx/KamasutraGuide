@@ -3,6 +3,7 @@ import SwiftUI
 // MARK: - Games List View
 struct GamesListView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var localization: LocalizationManager
     @State private var selectedGame: CoupleGame?
     
     var body: some View {
@@ -11,15 +12,15 @@ struct GamesListView: View {
                 VStack(spacing: 16) {
                     // Header
                     VStack(spacing: 8) {
-                        Text("Jocuri de Cuplu")
+                        Text(localization.L("Jocuri de Cuplu", "Couple Games"))
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(Theme.primaryGradient)
                         
-                        Text("Distractie si intimitate")
+                        Text(localization.L("Distractie si intimitate", "Fun and intimacy"))
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.5))
                         
-                        Text("\(GameData.allGames.count) Jocuri")
+                        Text(localization.L("\(GameData.allGames.count) Jocuri", "\(GameData.allGames.count) Games"))
                             .font(.caption)
                             .fontWeight(.bold)
                             .padding(.horizontal, 12)
@@ -48,6 +49,7 @@ struct GamesListView: View {
             .sheet(item: $selectedGame) { game in
                 GameDetailView(game: game)
                     .environmentObject(appState)
+                    .environmentObject(localization)
             }
         }
     }
@@ -56,6 +58,7 @@ struct GamesListView: View {
 // MARK: - Game Card
 struct GameCard: View {
     let game: CoupleGame
+    @EnvironmentObject var localization: LocalizationManager
     
     var body: some View {
         VStack(spacing: 12) {
@@ -69,13 +72,13 @@ struct GameCard: View {
                     .foregroundStyle(game.gradient)
             }
             
-            Text(game.name)
+            Text(game.localizedName(localization))
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
             
-            Text(game.description)
+            Text(game.localizedDescription(localization))
                 .font(.system(size: 10))
                 .foregroundColor(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
