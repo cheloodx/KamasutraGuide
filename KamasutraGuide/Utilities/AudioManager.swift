@@ -261,6 +261,9 @@ class AudioManager: ObservableObject {
                 self.duration = player.duration
             } else if let player = self.tonePlayer, player.isPlaying {
                 self.currentTime = player.currentTime.truncatingRemainder(dividingBy: self.duration > 0 ? self.duration : 8.0)
+            } else if self.isPlaying {
+                // Track finished playing — auto-advance to next track
+                self.nextTrack()
             }
         }
     }
