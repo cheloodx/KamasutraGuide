@@ -2,41 +2,42 @@ import SwiftUI
 
 struct MainTabView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var localization: LocalizationManager
     
     var body: some View {
         TabView(selection: $appState.selectedTab) {
             PositionsGridView()
                 .tabItem {
                     Image(systemName: "square.grid.2x2.fill")
-                    Text("Pozitii")
+                    Text(Strings.Tabs.positions(localization))
                 }
                 .tag(0)
             
             GamesListView()
                 .tabItem {
                     Image(systemName: "gamecontroller.fill")
-                    Text("Jocuri")
+                    Text(Strings.Tabs.games(localization))
                 }
                 .tag(1)
             
             FavoritesView()
                 .tabItem {
                     Image(systemName: "heart.fill")
-                    Text("Favorite")
+                    Text(Strings.Tabs.favorites(localization))
                 }
                 .tag(2)
             
             InfoView()
                 .tabItem {
                     Image(systemName: "info.circle.fill")
-                    Text("Info")
+                    Text(Strings.Tabs.info(localization))
                 }
                 .tag(3)
             
             DiscoverView()
                 .tabItem {
                     Image(systemName: "sparkles")
-                    Text("Descopera")
+                    Text(Strings.Tabs.discover(localization))
                 }
                 .tag(4)
         }

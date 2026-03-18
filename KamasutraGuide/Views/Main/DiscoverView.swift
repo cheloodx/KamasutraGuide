@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct DiscoverView: View {
+    @EnvironmentObject var localization: LocalizationManager
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -11,10 +13,10 @@ struct DiscoverView: View {
                         VStack(spacing: 8) {
                             Text("\u{2728}")
                                 .font(.system(size: 50))
-                            Text("Descopera")
+                            Text(localization.L("Descopera", "Discover"))
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.white)
-                            Text("Exploreaza toate functiile pentru cupluri")
+                            Text(localization.L("Exploreaza toate functiile pentru cupluri", "Explore all features for couples"))
                                 .font(.system(size: 13))
                                 .foregroundColor(.white.opacity(0.5))
                         }
@@ -26,10 +28,10 @@ struct DiscoverView: View {
                                     VStack(spacing: 10) {
                                         Text(feature.icon)
                                             .font(.system(size: 36))
-                                        Text(feature.name)
+                                        Text(feature.localizedName(localization))
                                             .font(.system(size: 14, weight: .bold))
                                             .foregroundColor(.white)
-                                        Text(feature.description)
+                                        Text(feature.localizedDescription(localization))
                                             .font(.system(size: 10))
                                             .foregroundColor(.white.opacity(0.5))
                                             .lineLimit(2)
@@ -54,7 +56,7 @@ struct DiscoverView: View {
                     .padding(.bottom, 30)
                 }
             }
-            .navigationTitle("Descopera")
+            .navigationTitle(localization.L("Descopera", "Discover"))
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())

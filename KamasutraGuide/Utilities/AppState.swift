@@ -56,7 +56,9 @@ class AppState: ObservableObject {
         if !searchText.isEmpty {
             positions = positions.filter {
                 $0.name.localizedCaseInsensitiveContains(searchText) ||
-                $0.description.localizedCaseInsensitiveContains(searchText)
+                $0.nameEn.localizedCaseInsensitiveContains(searchText) ||
+                $0.description.localizedCaseInsensitiveContains(searchText) ||
+                $0.descriptionEn.localizedCaseInsensitiveContains(searchText)
             }
         }
         

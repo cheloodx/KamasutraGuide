@@ -35,6 +35,9 @@
 		27135BAD8331452B924B152A /* WatchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779227E7D39247CCAB7058FC /* WatchSettingsView.swift */; };
 		228EA6ED2FFB45C69BE5A8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4237EA155284CF8B94AA0C7 /* Assets.xcassets */; };
 		AA1122334455667788990011 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2233445566778899001122 /* DiscoverView.swift */; };
+		CC1122334455667788990011 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1122334455667788990011 /* LocalizationManager.swift */; };
+		EE1122334455667788990011 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1122334455667788990011 /* AudioManager.swift */; };
+		AA2233445566778899001122 /* MusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3344556677889900112233 /* MusicPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +70,9 @@
 		D4237EA155284CF8B94AA0C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0127E03EC0E54D9889D058D2 /* KamasutraGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KamasutraGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2233445566778899001122 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		DD1122334455667788990011 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		FF1122334455667788990011 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		BB3344556677889900112233 /* MusicPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 				B98E4342A5444D4AB9E3F79D /* AppState.swift */,
 				217031F09553417D9DC7FE83 /* Components.swift */,
 				DD4CE0243B814F8FB6D1F305 /* Theme.swift */,
+				DD1122334455667788990011 /* LocalizationManager.swift */,
+				FF1122334455667788990011 /* AudioManager.swift */,
+				BB3344556677889900112233 /* MusicPlayerView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -323,6 +332,9 @@
 				C86C5F9A1A754190B6608F90 /* WorkoutDetailView.swift in Sources */,
 				481DC90CD8634F008C0BCFB7 /* WatchNotificationsView.swift in Sources */,
 				27135BAD8331452B924B152A /* WatchSettingsView.swift in Sources */,
+				CC1122334455667788990011 /* LocalizationManager.swift in Sources */,
+				EE1122334455667788990011 /* AudioManager.swift in Sources */,
+				AA2233445566778899001122 /* MusicPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

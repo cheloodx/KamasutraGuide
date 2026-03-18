@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PositionsGridView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var localization: LocalizationManager
     @State private var showingFilters = false
     
     private let columns = [
@@ -33,14 +34,14 @@ struct PositionsGridView: View {
                         
                         // Results count
                         HStack {
-                            Text("\(appState.filteredPositions.count) pozitii")
+                            Text(localization.L("\(appState.filteredPositions.count) pozitii", "\(appState.filteredPositions.count) positions"))
                                 .font(.system(size: 13))
                                 .foregroundColor(Theme.textSecondary)
                             Spacer()
                             Button(action: { withAnimation { showingFilters.toggle() } }) {
                                 HStack(spacing: 4) {
                                     Image(systemName: "slider.horizontal.3")
-                                    Text(showingFilters ? "Ascunde filtre" : "Mai multe filtre")
+                                    Text(showingFilters ? localization.L("Ascunde filtre", "Hide filters") : localization.L("Mai multe filtre", "More filters"))
                                 }
                                 .font(.system(size: 12))
                                 .foregroundColor(Theme.primary)
@@ -52,8 +53,8 @@ struct PositionsGridView: View {
                         if appState.filteredPositions.isEmpty {
                             EmptyStateView(
                                 icon: "magnifyingglass",
-                                title: "Nicio pozitie gasita",
-                                message: "Incercati sa modificati filtrele sau termenul de cautare."
+                                title: localization.L("Nicio pozitie gasita", "No positions found"),
+                                message: localization.L("Incercati sa modificati filtrele sau termenul de cautare.", "Try changing the filters or search term.")
                             )
                         } else {
                             LazyVGrid(columns: columns, spacing: 12) {
@@ -88,7 +89,7 @@ struct PositionsGridView: View {
                     Text("Kamasutra Guide")
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(Theme.textPrimary)
-                    Text("Descopera arta intimitatii")
+                    Text(localization.L("Descopera arta intimitatii", "Discover the art of intimacy"))
                         .font(.system(size: 14))
                         .foregroundColor(Theme.textSecondary)
                 }
@@ -99,7 +100,7 @@ struct PositionsGridView: View {
                     Text("\(appState.totalPositions)")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Theme.primary)
-                    Text("pozitii")
+                    Text(localization.L("pozitii", "positions"))
                         .font(.system(size: 10))
                         .foregroundColor(Theme.textMuted)
                 }
@@ -118,7 +119,7 @@ struct PositionsGridView: View {
             HStack(spacing: 8) {
                 // All button
                 Button(action: { appState.selectedCategory = nil }) {
-                    Text("Toate")
+                    Text(localization.L("Toate", "All"))
                         .font(.system(size: 13, weight: .medium))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 8)
@@ -150,7 +151,7 @@ struct PositionsGridView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 Button(action: { appState.selectedDifficulty = nil }) {
-                    Text("Toate")
+                    Text(localization.L("Toate", "All"))
                         .font(.system(size: 12, weight: .medium))
                         .padding(.horizontal, 10)
                         .padding(.vertical, 6)

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CompatibilityQuizView: View {
+    @EnvironmentObject var localization: LocalizationManager
     @State private var currentQuestion = 0
     @State private var answersP1: [Int] = []
     @State private var answersP2: [Int] = []
@@ -31,7 +32,7 @@ struct CompatibilityQuizView: View {
                 startView
             }
         }
-        .navigationTitle("Compatibilitate")
+        .navigationTitle(localization.L("Compatibilitate", "Compatibility"))
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -39,18 +40,18 @@ struct CompatibilityQuizView: View {
         VStack(spacing: 20) {
             Text("\u{1F491}")
                 .font(.system(size: 60))
-            Text("Test de\nCompatibilitate")
+            Text(localization.L("Test de\nCompatibilitate", "Compatibility\nTest"))
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
-            Text("Ambii parteneri raspund la aceleasi 10 intrebari separat, apoi vedeti cat de compatibili sunteti!")
+            Text(localization.L("Ambii parteneri raspund la aceleasi 10 intrebari separat, apoi vedeti cat de compatibili sunteti!", "Both partners answer the same 10 questions separately, then see how compatible you are!"))
                 .font(.system(size: 14))
                 .foregroundColor(.white.opacity(0.6))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
             
             Button(action: { started = true; isPartner2 = false; currentQuestion = 0; answersP1 = []; answersP2 = [] }) {
-                Text("Partenerul 1 - Incepe")
+                Text(localization.L("Partenerul 1 - Incepe", "Partner 1 - Start"))
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -64,26 +65,26 @@ struct CompatibilityQuizView: View {
     
     var questionView: some View {
         VStack(spacing: 20) {
-            Text(isPartner2 ? "Partenerul 2" : "Partenerul 1")
+            Text(isPartner2 ? localization.L("Partenerul 2", "Partner 2") : localization.L("Partenerul 1", "Partner 1"))
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(Color(hex: "FF6B8A"))
             
-            Text("Intrebarea \(currentQuestion + 1)/\(questions.count)")
+            Text(localization.L("Intrebarea \(currentQuestion + 1)/\(questions.count)", "Question \(currentQuestion + 1)/\(questions.count)"))
                 .font(.system(size: 13))
                 .foregroundColor(.white.opacity(0.5))
             
             let q = questions[currentQuestion]
             
-            Text(q.question)
+            Text(q.localizedQuestion(localization))
                 .font(.system(size: 18, weight: .bold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
             VStack(spacing: 10) {
-                ForEach(q.options.indices, id: \.self) { i in
+                ForEach(q.localizedOptions(localization).indices, id: \.self) { i in
                     Button(action: { selectAnswer(i) }) {
-                        Text(q.options[i])
+                        Text(q.localizedOptions(localization)[i])
                             .font(.system(size: 15, weight: .semibold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -107,18 +108,22 @@ struct CompatibilityQuizView: View {
                 .font(.system(size: 50, weight: .bold))
                 .foregroundStyle(Theme.primaryGradient)
             
-            Text("Compatibilitate")
+            Text(localization.L("Compatibilitate", "Compatibility"))
                 .font(.system(size: 16))
                 .foregroundColor(.white.opacity(0.6))
             
-            Text(compatibilityScore >= 70 ? "Sunteti foarte compatibili! Ganditi la fel in multe privinte." : compatibilityScore >= 40 ? "Aveti o compatibilitate buna! Diferentele va fac mai interesanti." : "Sunteti diferiti, dar opusele se atrag! Comunicarea este cheia.")
+            Text(compatibilityScore >= 70 ?
+                localization.L("Sunteti foarte compatibili! Ganditi la fel in multe privinte.", "You are very compatible! You think alike in many ways.") :
+                compatibilityScore >= 40 ?
+                localization.L("Aveti o compatibilitate buna! Diferentele va fac mai interesanti.", "You have good compatibility! Differences make you more interesting.") :
+                localization.L("Sunteti diferiti, dar opusele se atrag! Comunicarea este cheia.", "You are different, but opposites attract! Communication is key."))
                 .font(.system(size: 14))
                 .foregroundColor(.white.opacity(0.7))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
             
             Button(action: { showResult = false; started = false }) {
-                Text("Refa Testul")
+                Text(localization.L("Refa Testul", "Retake Test"))
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
