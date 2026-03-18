@@ -38,6 +38,7 @@ class AudioManager: ObservableObject {
     private var timer: Timer?
     private var toneTimer: Timer?
     private var currentToneIndex = 0
+    private var consecutiveFailedAdvances = 0
     
     // Romantic playlist - tracks that user can add to bundle
     let playlist: [MusicTrack] = [
@@ -82,15 +83,20 @@ class AudioManager: ObservableObject {
         
         // Try to play bundled music file first
         if tryPlayBundledTrack() {
-            isPlaying = true
-            startProgressTimer()
-            return
+            if audioPlayer?.isPlaying == true {
+                consecutiveFailedAdvances = 0
+                isPlaying = true
+                startProgressTimer()
+                return
+            }
         }
         
         // Fallback: generate ambient tone
         playAmbientTone()
-        isPlaying = true
-        startProgressTimer()
+        if tonePlayer?.isPlaying == true {
+            isPlaying = true
+            startProgressTimer()
+        }
     }
     
     func pause() {
@@ -263,7 +269,14 @@ class AudioManager: ObservableObject {
                 self.currentTime = player.currentTime.truncatingRemainder(dividingBy: self.duration > 0 ? self.duration : 8.0)
             } else if self.isPlaying {
                 // Track finished playing — auto-advance to next track
-                self.nextTrack()
+                if self.consecutiveFailedAdvances < 2 {
+                    self.consecutiveFailedAdvances += 1
+                    self.nextTrack()
+                } else {
+                    // Stop after repeated failures to prevent infinite loop
+                    self.consecutiveFailedAdvances = 0
+                    self.stop()
+                }
             }
         }
     }
