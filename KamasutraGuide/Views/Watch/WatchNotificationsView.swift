@@ -132,5 +132,9 @@ struct DateNightGeneratorView: View {
         }
         .navigationTitle(localization.L("Date Night", "Date Night"))
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: localization.currentLanguage) { _ in
+            selectedCategory = nil
+            currentIdea = nil
+        }
     }
 }
