@@ -38,6 +38,7 @@
 		CC1122334455667788990011 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1122334455667788990011 /* LocalizationManager.swift */; };
 		EE1122334455667788990011 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1122334455667788990011 /* AudioManager.swift */; };
 		AA2233445566778899001122 /* MusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3344556677889900112233 /* MusicPlayerView.swift */; };
+		CC3344556677889900112233 /* ToyShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4455667788990011223344 /* ToyShopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		DD1122334455667788990011 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		FF1122334455667788990011 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		BB3344556677889900112233 /* MusicPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerView.swift; sourceTree = "<group>"; };
+		DD4455667788990011223344 /* ToyShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyShopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				BB2233445566778899001122 /* DiscoverView.swift */,
 				E585ED58DEE5470A9139A635 /* MainTabView.swift */,
 				4013BA7E01914BB991DDCAE9 /* ProfileView.swift */,
+				DD4455667788990011223344 /* ToyShopView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				CC1122334455667788990011 /* LocalizationManager.swift in Sources */,
 				EE1122334455667788990011 /* AudioManager.swift in Sources */,
 				AA2233445566778899001122 /* MusicPlayerView.swift in Sources */,
+				CC3344556677889900112233 /* ToyShopView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

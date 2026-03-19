@@ -74,6 +74,7 @@ struct DiscoverView: View {
         case "lovelanguage": LoveLanguageTestView()
         case "compatibility": CompatibilityQuizView()
         case "achievements": AchievementsView()
+        case "toyshop": ToyShopView()
         default: EmptyView()
         }
     }

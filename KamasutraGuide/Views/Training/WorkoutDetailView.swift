@@ -432,7 +432,7 @@ struct SpinTheBottleView: View {
                             .font(.system(size: 36))
                             .foregroundColor(Color(hex: "E91E63"))
                         
-                        Text(action.localizedAction(localization))
+                        Text(action.localizedText(localization))
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -681,7 +681,9 @@ struct BodyPaintingView: View {
             ["arm", "back", "shoulder", "chest", "leg", "neck", "hand", "belly"] :
             ["brat", "spate", "umar", "piept", "picior", "gat", "mana", "burta"]
         withAnimation(.spring()) {
-            currentPrompt = prompts.randomElement() ?? ""
+            if let prompt = prompts.randomElement() {
+                currentPrompt = localization.isEnglish ? prompt.en : prompt.ro
+            }
             currentZone = zones.randomElement() ?? ""
         }
     }
@@ -835,11 +837,11 @@ struct CountdownGameView: View {
                 
                 if let challenge = currentChallenge {
                     VStack(spacing: 16) {
-                        Image(systemName: challenge.icon)
+                        Image(systemName: "timer")
                             .font(.system(size: 40))
                             .foregroundColor(Color(hex: "FF9800"))
                         
-                        Text(challenge.localizedAction(localization))
+                        Text(challenge.localizedText(localization))
                             .font(.title3)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -881,9 +883,9 @@ struct CountdownGameView: View {
     
     private func nextChallenge() {
         timerObj?.invalidate()
-        let challenges = GameData.countdownChallenges.filter { $0.level <= currentLevel + 2 }
+        let challenges = GameData.countdownChallenges.filter { $0.intensity <= currentLevel + 2 }
         currentChallenge = challenges.randomElement() ?? GameData.countdownChallenges.first
-        timeLeft = currentChallenge?.timeSeconds ?? 30
+        timeLeft = currentChallenge?.duration ?? 30
         isRunning = true
         
         timerObj = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -922,8 +924,9 @@ struct LoveBingoView: View {
                             }
                         }) {
                             VStack(spacing: 6) {
-                                Text(bingoItems[index].icon)
+                                Image(systemName: bingoItems[index].isCompleted ? "checkmark.circle.fill" : "circle")
                                     .font(.system(size: 24))
+                                    .foregroundColor(bingoItems[index].isCompleted ? Color(hex: "E91E63") : .white.opacity(0.4))
                                 Text(bingoItems[index].localizedText(localization))
                                     .font(.system(size: 9))
                                     .foregroundColor(.white)
@@ -1214,30 +1217,23 @@ struct MysteryBoxView: View {
                     
                     if let item = currentItem, showItem {
                         VStack(spacing: 16) {
-                            Text(item.icon)
+                            Image(systemName: item.icon)
                                 .font(.system(size: 50))
+                                .foregroundColor(Color(hex: "FF6F00"))
                             
-                            Text(item.localizedTitle(localization))
+                            Text(item.localizedText(localization))
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
-                            
-                            Text(item.localizedDescription(localization))
-                                .font(.body)
-                                .foregroundColor(.white.opacity(0.7))
                                 .multilineTextAlignment(.center)
                             
-                            HStack {
-                                Image(systemName: "clock.fill")
-                                Text(item.localizedDuration(localization))
+                            HStack(spacing: 4) {
+                                ForEach(0..<5) { i in
+                                    Image(systemName: i < item.intensity ? "flame.fill" : "flame")
+                                        .foregroundColor(i < item.intensity ? Color(hex: "FF6F00") : .white.opacity(0.3))
+                                }
                             }
                             .font(.caption)
-                            .foregroundColor(.white.opacity(0.5))
-                            
-                            Text(localization.L("Raritate: \(item.rarity)", "Rarity: \(item.rarity)"))
-                                .font(.caption)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color(hex: "FFD700"))
                         }
                         .padding(24)
                         .frame(maxWidth: .infinity)
@@ -1358,8 +1354,12 @@ struct MassageRouletteView: View {
         isSpinning = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             withAnimation(.spring()) {
-                currentZone = GameData.massageZones.randomElement() ?? ""
-                currentTechnique = GameData.massageTechniques.randomElement() ?? ""
+                if let zone = GameData.massageZones.randomElement() {
+                    currentZone = localization.isEnglish ? zone.en : zone.ro
+                }
+                if let technique = GameData.massageTechniques.randomElement() {
+                    currentTechnique = localization.isEnglish ? technique.en : technique.ro
+                }
                 currentDuration = [1, 2, 3, 5].randomElement() ?? 2
                 isSpinning = false
             }
@@ -1476,7 +1476,9 @@ struct LoveStoryView: View {
     
     private func nextPrompt() {
         let prompts = GameData.loveStoryPrompts
-        currentPrompt = prompts.randomElement() ?? ""
+        if let prompt = prompts.randomElement() {
+            currentPrompt = localization.isEnglish ? prompt.en : prompt.ro
+        }
     }
 }
 
@@ -1514,11 +1516,11 @@ struct TempoGameView: View {
                 
                 if let challenge = currentChallenge {
                     VStack(spacing: 16) {
-                        Image(systemName: challenge.icon)
+                        Image(systemName: "bolt.fill")
                             .font(.system(size: 36))
                             .foregroundColor(Color(hex: "D32F2F"))
                         
-                        Text(challenge.localizedAction(localization))
+                        Text(challenge.localizedText(localization))
                             .font(.title3)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -1566,9 +1568,9 @@ struct TempoGameView: View {
     
     private func nextChallenge() {
         timerObj?.invalidate()
-        let challenges = GameData.tempoChallenges.filter { $0.tempo <= currentTempo + 1 }
+        let challenges = GameData.tempoChallenges.filter { $0.level <= currentTempo + 1 }
         currentChallenge = challenges.randomElement() ?? GameData.tempoChallenges.first
-        timeLeft = currentChallenge?.timeSeconds ?? 20
+        timeLeft = currentChallenge?.duration ?? 20
         isRunning = true
         
         timerObj = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in

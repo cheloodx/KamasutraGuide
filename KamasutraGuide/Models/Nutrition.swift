@@ -274,6 +274,26 @@ struct SongSuggestion: Identifiable {
     let artist: String
 }
 
+// MARK: - Toy Shop Item
+struct ToyShopItem: Identifiable {
+    let id = UUID()
+    let name: String
+    let nameEn: String
+    let description: String
+    let descriptionEn: String
+    let icon: String
+    let url: String
+    let color1: String
+    let color2: String
+    
+    var gradient: LinearGradient {
+        LinearGradient(colors: [Color(hex: color1), Color(hex: color2)], startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+    
+    func localizedName(_ l: LocalizationManager) -> String { l.isEnglish ? nameEn : name }
+    func localizedDescription(_ l: LocalizationManager) -> String { l.isEnglish ? descriptionEn : description }
+}
+
 // MARK: - Discover Feature Item
 struct DiscoverFeature: Identifiable {
     let id: String

@@ -44,6 +44,10 @@ class LocalizationManager: ObservableObject {
         currentLanguage = currentLanguage == .romanian ? .english : .romanian
     }
     
+    func setLanguage(_ language: AppLanguage) {
+        currentLanguage = language
+    }
+    
     /// Returns localized string based on current language
     func L(_ ro: String, _ en: String) -> String {
         currentLanguage == .romanian ? ro : en

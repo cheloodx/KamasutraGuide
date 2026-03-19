@@ -162,6 +162,18 @@ class FeatureData {
         ], color1: "FFB74D", color2: "FF8F00"),
     ]
     
+    // MARK: - Toy Shop Items
+    static let toyShopItems: [ToyShopItem] = [
+        ToyShopItem(name: "Lovehoney", nameEn: "Lovehoney", description: "Cel mai mare magazin online de jucarii pentru adulti, cu mii de produse.", descriptionEn: "The largest online adult toy store with thousands of products.", icon: "\u{1F49C}", url: "https://www.lovehoney.com", color1: "9C27B0", color2: "7B1FA2"),
+        ToyShopItem(name: "Adam & Eve", nameEn: "Adam & Eve", description: "Magazin de incredere cu produse premium si livrare discreta.", descriptionEn: "Trusted store with premium products and discreet delivery.", icon: "\u{1F34E}", url: "https://www.adameve.com", color1: "E91E63", color2: "C2185B"),
+        ToyShopItem(name: "LELO", nameEn: "LELO", description: "Brand de lux suedez, cunoscut pentru design elegant si calitate superioara.", descriptionEn: "Swedish luxury brand known for elegant design and superior quality.", icon: "\u{2728}", url: "https://www.lelo.com", color1: "FFD700", color2: "FFA000"),
+        ToyShopItem(name: "We-Vibe", nameEn: "We-Vibe", description: "Specializat in jucarii pentru cupluri cu control prin aplicatie.", descriptionEn: "Specialized in couple toys with app control.", icon: "\u{1F4F1}", url: "https://www.we-vibe.com", color1: "00BCD4", color2: "0097A7"),
+        ToyShopItem(name: "Satisfyer", nameEn: "Satisfyer", description: "Produse inovatoare cu tehnologie de unde de presiune.", descriptionEn: "Innovative products with pressure wave technology.", icon: "\u{1F30A}", url: "https://www.satisfyer.com", color1: "FF5722", color2: "E64A19"),
+        ToyShopItem(name: "Bondara", nameEn: "Bondara", description: "Varietate mare de produse la preturi accesibile.", descriptionEn: "Wide variety of products at affordable prices.", icon: "\u{1F381}", url: "https://www.bondara.co.uk", color1: "F44336", color2: "D32F2F"),
+        ToyShopItem(name: "SheVibe", nameEn: "SheVibe", description: "Magazin independent cu selectie curata si recenzii detaliate.", descriptionEn: "Independent store with curated selection and detailed reviews.", icon: "\u{1F308}", url: "https://shevibe.com", color1: "4CAF50", color2: "388E3C"),
+        ToyShopItem(name: "Sinful", nameEn: "Sinful", description: "Magazin scandinav cu produse sigure pentru corp si eco-friendly.", descriptionEn: "Scandinavian store with body-safe and eco-friendly products.", icon: "\u{1F33F}", url: "https://www.sinful.com", color1: "607D8B", color2: "455A64"),
+    ]
+    
     // MARK: - Discover Features
     static let discoverFeatures: [DiscoverFeature] = [
         DiscoverFeature(id: "quotes", name: "Citate Romantice", nameEn: "Romantic Quotes", icon: "\u{1F4AC}", description: "20 citate despre iubire si pasiune", descriptionEn: "20 quotes about love and passion", color1: "FF6B8A", color2: "C44569"),
@@ -173,5 +185,6 @@ class FeatureData {
         DiscoverFeature(id: "lovelanguage", name: "Limbajul Iubirii", nameEn: "Love Language", icon: "\u{1F49D}", description: "Descopera cum iubesti si esti iubit", descriptionEn: "Discover how you love and are loved", color1: "EC407A", color2: "C2185B"),
         DiscoverFeature(id: "compatibility", name: "Compatibilitate", nameEn: "Compatibility", icon: "\u{1F491}", description: "Test de compatibilitate pentru cuplu", descriptionEn: "Compatibility test for couples", color1: "26C6DA", color2: "00ACC1"),
         DiscoverFeature(id: "achievements", name: "Realizari", nameEn: "Achievements", icon: "\u{1F3C6}", description: "10 badge-uri de deblocat", descriptionEn: "10 badges to unlock", color1: "FFD54F", color2: "FFC107"),
+        DiscoverFeature(id: "toyshop", name: "Magazin Jucarii", nameEn: "Toy Shop", icon: "\u{1F6CD}", description: "Magazine online de jucarii pentru adulti", descriptionEn: "Online adult toy shops", color1: "9C27B0", color2: "7B1FA2"),
     ]
 }
