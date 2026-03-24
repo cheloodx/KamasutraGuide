@@ -112,8 +112,9 @@ struct MoodRecommendationsView: View {
                 let matchedPositions = PositionData.allPositions.filter { rec.positions.contains($0.id) }
                 ForEach(matchedPositions) { pos in
                     HStack(spacing: 12) {
-                        Text(pos.category.icon)
+                        Image(systemName: pos.category.icon)
                             .font(.system(size: 16))
+                            .foregroundColor(rec.mood.color)
                             .frame(width: 36, height: 36)
                             .background(rec.mood.color.opacity(0.15))
                             .cornerRadius(10)
