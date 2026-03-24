@@ -12,31 +12,28 @@ struct ChallengeModeView: View {
     var progressPercent: Double { Double(completedCount) / 30.0 }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Theme.background.ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        headerSection
-                        progressSection
-                        categoryLegend
-                        challengeGrid
-                    }
-                    .padding(.top, 8)
-                    .padding(.bottom, 30)
+        ZStack {
+            Theme.background.ignoresSafeArea()
+            
+            ScrollView {
+                VStack(spacing: 20) {
+                    headerSection
+                    progressSection
+                    categoryLegend
+                    challengeGrid
                 }
+                .padding(.top, 8)
+                .padding(.bottom, 30)
             }
-            .navigationTitle(localization.L("Provocari 30 Zile", "30 Day Challenges"))
-            .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $showDetail) {
-                if let challenge = selectedChallenge {
-                    challengeDetailSheet(challenge)
-                }
-            }
-            .onAppear { loadProgress() }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationTitle(localization.L("Provocari 30 Zile", "30 Day Challenges"))
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showDetail) {
+            if let challenge = selectedChallenge {
+                challengeDetailSheet(challenge)
+            }
+        }
+        .onAppear { loadProgress() }
     }
     
     private var headerSection: some View {

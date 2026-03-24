@@ -16,20 +16,17 @@ struct EnhancedLoveLanguageView: View {
     private let questions = FeatureData.loveLanguageQuestions
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Theme.background.ignoresSafeArea()
-                
-                if showResult, let result = result {
-                    resultView(result)
-                } else {
-                    questionView
-                }
+        ZStack {
+            Theme.background.ignoresSafeArea()
+            
+            if showResult, let result = result {
+                resultView(result)
+            } else {
+                questionView
             }
-            .navigationTitle(localization.L("Test Limbajul Iubirii", "Love Language Test"))
-            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationTitle(localization.L("Test Limbajul Iubirii", "Love Language Test"))
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var questionView: some View {

@@ -11,24 +11,21 @@ struct VideoTutorialsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Theme.background.ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        headerSection
-                        categoryFilter
-                        tutorialList
-                    }
-                    .padding(.top, 8)
-                    .padding(.bottom, 30)
+        ZStack {
+            Theme.background.ignoresSafeArea()
+            
+            ScrollView {
+                VStack(spacing: 20) {
+                    headerSection
+                    categoryFilter
+                    tutorialList
                 }
+                .padding(.top, 8)
+                .padding(.bottom, 30)
             }
-            .navigationTitle(localization.L("Tutoriale", "Tutorials"))
-            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationTitle(localization.L("Tutoriale", "Tutorials"))
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var headerSection: some View {

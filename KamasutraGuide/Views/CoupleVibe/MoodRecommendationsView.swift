@@ -5,28 +5,25 @@ struct MoodRecommendationsView: View {
     @State private var selectedMood: CoupleVibeMood?
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Theme.background.ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        headerSection
-                        moodSelector
-                        
-                        if let mood = selectedMood, let rec = CoupleVibeData.moodRecommendations.first(where: { $0.mood == mood }) {
-                            recommendationContent(rec)
-                                .transition(.opacity.combined(with: .move(edge: .bottom)))
-                        }
+        ZStack {
+            Theme.background.ignoresSafeArea()
+            
+            ScrollView {
+                VStack(spacing: 20) {
+                    headerSection
+                    moodSelector
+                    
+                    if let mood = selectedMood, let rec = CoupleVibeData.moodRecommendations.first(where: { $0.mood == mood }) {
+                        recommendationContent(rec)
+                            .transition(.opacity.combined(with: .move(edge: .bottom)))
                     }
-                    .padding(.top, 8)
-                    .padding(.bottom, 30)
                 }
+                .padding(.top, 8)
+                .padding(.bottom, 30)
             }
-            .navigationTitle(localization.L("Recomandari", "Recommendations"))
-            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationTitle(localization.L("Recomandari", "Recommendations"))
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var headerSection: some View {

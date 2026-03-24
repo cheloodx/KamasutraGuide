@@ -16,27 +16,24 @@ struct IntimacyScoreView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Theme.background.ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        headerSection
-                        scoreCircle
-                        slidersSection
-                        saveButton
-                        historySection
-                    }
-                    .padding(.top, 8)
-                    .padding(.bottom, 30)
+        ZStack {
+            Theme.background.ignoresSafeArea()
+            
+            ScrollView {
+                VStack(spacing: 20) {
+                    headerSection
+                    scoreCircle
+                    slidersSection
+                    saveButton
+                    historySection
                 }
+                .padding(.top, 8)
+                .padding(.bottom, 30)
             }
-            .navigationTitle(localization.L("Scor Intimitate", "Intimacy Score"))
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear { loadEntries() }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationTitle(localization.L("Scor Intimitate", "Intimacy Score"))
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear { loadEntries() }
     }
     
     private var headerSection: some View {
