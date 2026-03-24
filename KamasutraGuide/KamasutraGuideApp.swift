@@ -2,7 +2,7 @@ import SwiftUI
 import AVFoundation
 
 @main
-struct KamasutraGuideApp: App {
+struct CoupleVibeApp: App {
     @StateObject private var appState = AppState()
     @StateObject private var localization = LocalizationManager()
     @StateObject private var audioManager = AudioManager.shared
