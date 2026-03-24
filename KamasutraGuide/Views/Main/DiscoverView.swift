@@ -75,6 +75,11 @@ struct DiscoverView: View {
         case "compatibility": CompatibilityQuizView()
         case "achievements": AchievementsView()
         case "toyshop": ToyShopView()
+        case "challenges": ChallengeModeView()
+        case "moodrec": MoodRecommendationsView()
+        case "intimacyscore": IntimacyScoreView()
+        case "tutorials": VideoTutorialsView()
+        case "enhancedlove": EnhancedLoveLanguageView()
         default: EmptyView()
         }
     }

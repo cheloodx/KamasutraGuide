@@ -186,5 +186,10 @@ class FeatureData {
         DiscoverFeature(id: "compatibility", name: "Compatibilitate", nameEn: "Compatibility", icon: "\u{1F491}", description: "Test de compatibilitate pentru cuplu", descriptionEn: "Compatibility test for couples", color1: "26C6DA", color2: "00ACC1"),
         DiscoverFeature(id: "achievements", name: "Realizari", nameEn: "Achievements", icon: "\u{1F3C6}", description: "10 badge-uri de deblocat", descriptionEn: "10 badges to unlock", color1: "FFD54F", color2: "FFC107"),
         DiscoverFeature(id: "toyshop", name: "Magazin Jucarii", nameEn: "Toy Shop", icon: "\u{1F6CD}", description: "Magazine online de jucarii pentru adulti", descriptionEn: "Online adult toy shops", color1: "9C27B0", color2: "7B1FA2"),
+        DiscoverFeature(id: "challenges", name: "Provocari 30 Zile", nameEn: "30 Day Challenges", icon: "\u{1F525}", description: "30 de provocari progresive pentru cupluri", descriptionEn: "30 progressive challenges for couples", color1: "FF6348", color2: "EE5A24"),
+        DiscoverFeature(id: "moodrec", name: "Recomandari Mood", nameEn: "Mood Recommendations", icon: "\u{1F3AF}", description: "Recomandari personalizate bazate pe stare", descriptionEn: "Personalized recommendations based on mood", color1: "A55EEA", color2: "8854D0"),
+        DiscoverFeature(id: "intimacyscore", name: "Scor Intimitate", nameEn: "Intimacy Score", icon: "\u{1F4CA}", description: "Urmareste si imbunatateste conexiunea", descriptionEn: "Track and improve your connection", color1: "4FC3F7", color2: "0288D1"),
+        DiscoverFeature(id: "tutorials", name: "Tutoriale Educative", nameEn: "Educational Tutorials", icon: "\u{1F3AC}", description: "Ghiduri pas cu pas pentru cupluri", descriptionEn: "Step by step guides for couples", color1: "66BB6A", color2: "43A047"),
+        DiscoverFeature(id: "enhancedlove", name: "Test Limbajul Iubirii+", nameEn: "Love Language Test+", icon: "\u{1F49D}", description: "Test avansat cu recomandari personalizate", descriptionEn: "Advanced test with personalized recommendations", color1: "EC407A", color2: "C2185B"),
     ]
 }

@@ -39,6 +39,13 @@
 		EE1122334455667788990011 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1122334455667788990011 /* AudioManager.swift */; };
 		AA2233445566778899001122 /* MusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3344556677889900112233 /* MusicPlayerView.swift */; };
 		CC3344556677889900112233 /* ToyShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4455667788990011223344 /* ToyShopView.swift */; };
+		CCBB001122334455667788AA /* CoupleVibeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB001122334455667788AA /* CoupleVibeModels.swift */; };
+		CCBB001122334455667788BB /* CoupleVibeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB001122334455667788BB /* CoupleVibeData.swift */; };
+		CCBB001122334455667788CC /* ChallengeModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB001122334455667788CC /* ChallengeModeView.swift */; };
+		CCBB001122334455667788DD /* MoodRecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB001122334455667788DD /* MoodRecommendationsView.swift */; };
+		CCBB001122334455667788EE /* IntimacyScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB001122334455667788EE /* IntimacyScoreView.swift */; };
+		CCBB001122334455667788FF /* VideoTutorialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB001122334455667788FF /* VideoTutorialsView.swift */; };
+		CCBB00112233445566778811 /* EnhancedLoveLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00112233445566778811 /* EnhancedLoveLanguageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +82,13 @@
 		FF1122334455667788990011 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		BB3344556677889900112233 /* MusicPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerView.swift; sourceTree = "<group>"; };
 		DD4455667788990011223344 /* ToyShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyShopView.swift; sourceTree = "<group>"; };
+		AABB001122334455667788AA /* CoupleVibeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleVibeModels.swift; sourceTree = "<group>"; };
+		AABB001122334455667788BB /* CoupleVibeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleVibeData.swift; sourceTree = "<group>"; };
+		AABB001122334455667788CC /* ChallengeModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModeView.swift; sourceTree = "<group>"; };
+		AABB001122334455667788DD /* MoodRecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodRecommendationsView.swift; sourceTree = "<group>"; };
+		AABB001122334455667788EE /* IntimacyScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntimacyScoreView.swift; sourceTree = "<group>"; };
+		AABB001122334455667788FF /* VideoTutorialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTutorialsView.swift; sourceTree = "<group>"; };
+		AABB00112233445566778811 /* EnhancedLoveLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedLoveLanguageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +132,8 @@
 				5D830052E2704EA18CF5FA71 /* User.swift */,
 				6ED1D0120F5749029C53633E /* Watch.swift */,
 				2DD0F176D57C4EAEB63CB208 /* Workout.swift */,
+				AABB001122334455667788AA /* CoupleVibeModels.swift */,
+				AABB001122334455667788BB /* CoupleVibeData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,6 +161,7 @@
 				8FFE2F6E8BE645ACA1FA6682 /* Social */,
 				BE5741C6DD6F40B8B440552F /* Watch */,
 				4F4A664DECF545B3B15A7B29 /* Gamification */,
+				AABB00112233445566778800 /* CoupleVibe */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +255,18 @@
 				390A8560AFFF4107AE0AA9B0 /* UnboxingView.swift */,
 			);
 			path = Unboxing;
+			sourceTree = "<group>";
+		};
+		AABB00112233445566778800 /* CoupleVibe */ = {
+			isa = PBXGroup;
+			children = (
+				AABB001122334455667788CC /* ChallengeModeView.swift */,
+				AABB001122334455667788DD /* MoodRecommendationsView.swift */,
+				AABB001122334455667788EE /* IntimacyScoreView.swift */,
+				AABB001122334455667788FF /* VideoTutorialsView.swift */,
+				AABB00112233445566778811 /* EnhancedLoveLanguageView.swift */,
+			);
+			path = CoupleVibe;
 			sourceTree = "<group>";
 		};
 		02BF7D5B1E264754965089DC /* Products */ = {
@@ -339,6 +368,13 @@
 				EE1122334455667788990011 /* AudioManager.swift in Sources */,
 				AA2233445566778899001122 /* MusicPlayerView.swift in Sources */,
 				CC3344556677889900112233 /* ToyShopView.swift in Sources */,
+				CCBB001122334455667788AA /* CoupleVibeModels.swift in Sources */,
+				CCBB001122334455667788BB /* CoupleVibeData.swift in Sources */,
+				CCBB001122334455667788CC /* ChallengeModeView.swift in Sources */,
+				CCBB001122334455667788DD /* MoodRecommendationsView.swift in Sources */,
+				CCBB001122334455667788EE /* IntimacyScoreView.swift in Sources */,
+				CCBB001122334455667788FF /* VideoTutorialsView.swift in Sources */,
+				CCBB00112233445566778811 /* EnhancedLoveLanguageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
